@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Lightbox</title>
+    <title>Gallery</title>
 </head>
+
 <body>
-    <div class="main-container">
-        <div class="gallery">
-            <img src="images/img1.webp" alt="" class="image">
-            <img src="images/img2.webp" alt="" class="image">
-            <img src="images/img3.webp" alt="" class="image">
-            <img src="images/img4.webp" alt="" class="image">
-            <img src="images/img5.webp" alt="" class="image">
-            <img src="images/img6.webp" alt="" class="image">
-            <img src="images/img7.webp" alt="" class="image">
-            <img src="images/img8.webp" alt="" class="image">
-            <img src="images/img9.webp" alt="" class="image">
-            <img src="images/img10.webp" alt="" class="image">
-            <img src="images/img11.webp" alt="" class="image">
-            <img src="images/img12.webp" alt="" class="image">
-            <img src="images/img13.webp" alt="" class="image">
-            <img src="images/img14.webp" alt="" class="image">
-            <img src="images/img15.webp" alt="" class="image">
-            <img src="images/img16.webp" alt="" class="image">
-            <img src="images/img17.webp" alt="" class="image">
-            <img src="images/img18.webp" alt="" class="image">
-            <img src="images/img19.webp" alt="" class="image">
-            <img src="images/img20.webp" alt="" class="image">
+    <div id="main-container">
+        <div id="gallery">
+        </div>
+        <div id="preview-box">
+            <div id="preview-container">
+                <div id="preview-img-container">
+                    <img src="" alt="image" id="selected-image">
+                </div>
+                <div id="btn-container">
+                    <button id="prev-btn"><span class="icon">&#8678;</span> prev</button>
+                    <button id="next-btn">next <span class="icon">&#8680;</span></button>
+                </div>
+            </div>
         </div>
     </div>
     <script src="index.js"></script>
 </body>
+
 </html>
