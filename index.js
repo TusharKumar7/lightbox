@@ -39,7 +39,7 @@ const imageUrl = [
     "images/img30.jpeg",
 ];
 
-let selectedImageNumber;
+let selectedImageIndex;
 
 for (let i = 0; i < imageUrl.length; i++) {
     const image = document.createElement("img");
@@ -48,7 +48,7 @@ for (let i = 0; i < imageUrl.length; i++) {
     image.onclick = () => {
         previewBox.style.display = "flex";
         selectedImage.setAttribute("src", `/images/img${i + 1}.jpeg`);
-        selectedImageNumber = i + 1;
+        selectedImageIndex = i + 1;
         showNavButtons();
         previewBox.classList.add("zoom-in");
     };
@@ -57,10 +57,10 @@ for (let i = 0; i < imageUrl.length; i++) {
 
 
 const showNavButtons = () => {
-    if (selectedImageNumber === imageUrl.length) {
+    if (selectedImageIndex === imageUrl.length) {
         prevBtn.classList.remove("hidden");
         nextBtn.classList.add("hidden");
-    } else if (selectedImageNumber === 1) {
+    } else if (selectedImageIndex === 1) {
         prevBtn.classList.add("hidden")
         nextBtn.classList.remove("hidden");
     } else {
@@ -70,22 +70,22 @@ const showNavButtons = () => {
 }
 
 nextBtn.onclick = () => {
-    if (selectedImageNumber < imageUrl.length) {
-        selectedImageNumber++;
+    if (selectedImageIndex < imageUrl.length) {
+        selectedImageIndex++;
         selectedImage.setAttribute(
             "src",
-            `/images/img${selectedImageNumber}.jpeg`
+            `/images/img${selectedImageIndex}.jpeg`
         );
     }
     showNavButtons();
 };
 
 prevBtn.onclick = () => {
-    if (selectedImageNumber > 0) {
-        selectedImageNumber--;
+    if (selectedImageIndex > 0) {
+        selectedImageIndex--;
         selectedImage.setAttribute(
             "src",
-            `/images/img${selectedImageNumber}.jpeg`
+            `/images/img${selectedImageIndex}.jpeg`
         );
     }
     showNavButtons();
