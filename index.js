@@ -72,8 +72,9 @@ for (let i = 0; i < imageUrl.length; i++) {
 const previewImages=document.querySelectorAll('.previewImage')
 const handleHighlight=()=>{
     previewImages.forEach((img,index)=>{
-        if(index===selectedImageIndex-1){
+        if(index===selectedImageIndex-1){ 
             img.classList.add('highlight');
+            img.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }else{
             img.classList.remove('highlight');
         }

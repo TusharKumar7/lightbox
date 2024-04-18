@@ -119,6 +119,7 @@
   
   .highlight {
     border: 6px solid white;
+    transform: scale(1.2);
   }
   
   .hidden {
