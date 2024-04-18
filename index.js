@@ -4,7 +4,7 @@ const selectedImage = document.getElementById("selected-image");
 const nextBtn = document.getElementById("next-btn");
 const prevBtn = document.getElementById("prev-btn");
 const previewContainer = document.getElementById("preview-container");
-const previewGalleryContainer = document.getElementById("preview-gallery-container");
+const previewSliderContainer = document.getElementById("preview-gallery-container");
 
 const imageUrl = [
   "images/img1.jpeg",
@@ -46,47 +46,43 @@ for (let i = 0; i < imageUrl.length; i++) {
   image.classList.add("image");
   image.setAttribute("src", imageUrl[i]);
   image.onclick = () => {
-    previewBox.style.display = "flex";
-    selectedImage.setAttribute("src", `/images/img${i + 1}.jpeg`);
-    selectedImageIndex = i + 1;
-    showNavButtons();
-    handleHighlight();
+    appendImageOnPreview(i);
   };
   gallery.appendChild(image);
-}
-
-
-for (let i = 0; i < imageUrl.length; i++) {
-  const previewGalleryImage = document.createElement("img");
-  previewGalleryImage.className="previewImage"
-  previewGalleryImage.setAttribute("src", imageUrl[i]);
-  previewGalleryImage.onclick = () => {
-    selectedImage.setAttribute("src", `/images/img${i + 1}.jpeg`);
-    selectedImageIndex = i + 1;
-    showNavButtons();
-    handleHighlight();
+  const previewSliderImages = document.createElement("img");
+  previewSliderImages.className = "previewImage";
+  previewSliderImages.setAttribute("src", imageUrl[i]);
+  previewSliderImages.onclick = () => {
+    appendImageOnPreview(i);
   };
-  previewGalleryContainer.appendChild(previewGalleryImage);
+  previewSliderContainer.appendChild(previewSliderImages);
 }
 
-const previewImages=document.querySelectorAll('.previewImage')
-const handleHighlight=()=>{
-    previewImages.forEach((img,index)=>{
-        if(index===selectedImageIndex-1){ 
-            img.classList.add('highlight');
-            img.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }else{
-            img.classList.remove('highlight');
-        }
-    })
-}
+const appendImageOnPreview = (imageIndex) => {
+  previewBox.style.display = "flex";
+  selectedImage.setAttribute("src", imageUrl[imageIndex]);
+  selectedImageIndex = imageIndex;
+  showNavButtons();
+  handleSelectedImage();
+};
 
+const previewImages = document.querySelectorAll(".previewImage");
+const handleSelectedImage = () => {
+  previewImages.forEach((img, index) => {
+    if (index === selectedImageIndex) {
+      img.classList.add("highlight");
+      img.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+      img.classList.remove("highlight");
+    }
+  });
+};
 
 const showNavButtons = () => {
-  if (selectedImageIndex === imageUrl.length) {
+  if (selectedImageIndex === imageUrl.length-1) {
     prevBtn.classList.remove("hidden");
     nextBtn.classList.add("hidden");
-  } else if (selectedImageIndex === 1) {
+  } else if (selectedImageIndex === 0) {
     prevBtn.classList.add("hidden");
     nextBtn.classList.remove("hidden");
   } else {
@@ -98,20 +94,21 @@ const showNavButtons = () => {
 nextBtn.onclick = () => {
   if (selectedImageIndex < imageUrl.length) {
     selectedImageIndex++;
-    selectedImage.setAttribute("src", `/images/img${selectedImageIndex}.jpeg`);
+    selectedImage.setAttribute("src", imageUrl[selectedImageIndex]);
   }
   showNavButtons();
-  handleHighlight();
+  handleSelectedImage();
 };
 
 prevBtn.onclick = () => {
-  if (selectedImageIndex > 0) {
+  if (selectedImageIndex>0) {
     selectedImageIndex--;
-    selectedImage.setAttribute("src", `/images/img${selectedImageIndex}.jpeg`);
+    selectedImage.setAttribute("src", imageUrl[selectedImageIndex]);
   }
   showNavButtons();
-  handleHighlight();
+  handleSelectedImage();
 };
+
 
 previewBox.onclick = (e) => {
   previewBox.style.display = "none";
@@ -121,6 +118,6 @@ previewContainer.onclick = (e) => {
   e.stopPropagation();
 };
 
-previewGalleryContainer.onclick = (e) => {
+previewSliderContainer.onclick = (e) => {
   e.stopPropagation();
 };
